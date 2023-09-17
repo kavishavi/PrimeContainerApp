@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Prime Checker</title>
+</head>
+
+<body>
+    <h1>Prime Directive</h1>
+    <p>Enter a number with 10 digits or less.</p>
+    <form method="POST" action="/">
+        <input type="number" name="number" min="1" max="9999999999" required>
+        <input type="submit" value="Check">
+    </form>
+    {% if result == "prime" %}
+      <p>{{ number }} is a prime number. You hit a bulls eye!</p>
+    {% elif result == "not prime" %}
+      <p>Closest prime to {{ number }} is <b>{{ closest }}</b>. You missed it only by {{ delta }}.</p>
+    {% else %}
+       <p>The number is incorrect. Enter an integer with 10 digits or less.</p>
+    {% endif %}
+</body>
+
+</html>
