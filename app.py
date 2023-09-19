@@ -32,6 +32,14 @@ def nearestPrime(n):
       else:
         delta += 1
 
+# get sum of digits
+def getSum(n):
+    
+    sum = 0
+    for digit in str(n): 
+      sum += int(digit)      
+    return sum
+
 # define a route for the home page
 @app.route("/", methods=["GET", "POST"])
 def home():
@@ -40,6 +48,7 @@ def home():
     number = None
     closest = None
     delta = None
+    dsum = None 
 
     # check if the request method is POST
     if request.method == "POST":
@@ -52,8 +61,20 @@ def home():
             if number < 1:
                 raise ValueError
 
+            # print sum of digits
+            dsum = 0
+            for digit in str(number):
+              dsum += int(digit)
+            
+            # check if the number is even
+            if number % 2 == 0:
+               result = "even"
+            elif number % 5 == 0:
+               result = "divisible_by_5"
             # check if the number is prime and set the result accordingly
-            if isPrime(number):
+            elif number % 3 == 0:
+               result = "divisible_by_3"
+            elif isPrime(number):
                 result = "prime"
             else:
                 result = "not prime"
@@ -66,7 +87,7 @@ def home():
             result = "invalid"
 
     # render the index.html template with the result and number variables
-    return render_template("index.html", result=result, number=number, closest=closest, delta=delta)
+    return render_template("index.html", result=result, number=number, closest=closest, delta=delta, dsum=dsum)
 
 # run the app
 # app.run()
