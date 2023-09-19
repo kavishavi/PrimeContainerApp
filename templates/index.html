@@ -6,19 +6,40 @@
 </head>
 
 <body>
-    <h1>Prime Directive</h1>
-    <p>Enter a number with 10 digits or less.</p>
+    <h1>Prime Detective</h1>
+    <h5> Think of a number and it may be a prime number. Don't believe it? Give it a try! <br>
+    You may have heard that prime numbers are not so common. <br> This project breaks that myth.</h5>
+
+
+    <p>Enter a number with 10 digits or less that does not end in </p>
+    <p> **** 0, 2, 4, 6, 8 ==> since all such numbers are divisible by 2 and hence cannot be a prime number.</p>
+    <p> **** 5 ==> since all such numbers are divisible by 5 and hence cannot be a prime number. </p>
+    <p> Also, numbers whose digits add up to a multiple of 3 are all divisible by 3 and hence cannot be a prime number. Hence avoid them as well. </p>
+    
     <form method="POST" action="/">
         <input type="number" name="number" min="1" max="9999999999" required>
         <input type="submit" value="Check">
     </form>
-    {% if result == "prime" %}
-      <p>{{ number }} is a prime number. You hit a bulls eye!</p>
+    {% if result == "even" %}
+      <p>{{ number }} ends with 0, 2, 4, 6 or 8. Please enter a number that does not end in 0, 2, 4, 6 or 8 since they are all divisible by 2 just by observation.  </p>
+    {% elif result == "divisible_by_5" %}     
+      <p>{{ number }} ends with 5. Please enter a number that does not end in 5 since they are all divisible by 5 just by observation.</p>
+    {% elif result == "divisible_by_3" %}     
+      <p>Sum of digits in this {{ number }} is {{ dsum }} a multiple of 3 hence the number entered is also divisble by 3 and cannot be prime.</p>
+    {% elif result == "prime" %}
+      <p>{{ number }} is a prime number. You hit a bulls eye!!</p>
     {% elif result == "not prime" %}
       <p>Closest prime to {{ number }} is <b>{{ closest }}</b>. You missed it only by {{ delta }}.</p>
     {% else %}
        <p>The number is incorrect. Enter an integer with 10 digits or less.</p>
     {% endif %}
-</body>
+
+<hr>
+
+<p>Huge thanks to <a href="https://www.linkedin.com/in/guybowerman">Guy</a>, <a href="https://www.linkedin.com/in/manishkg1">Manish</a>,
+    <a href="https://www.linkedin.com/in/veluhariharan">Hariharan</a>,
+    <a href="https://www.linkedin.com/in/sachid-deshmukh-896a53149">Sachid</a>, 
+    <a href="https://www.linkedin.com/in/raghavmaddali5">Raghav</a></p>
+    </body>
 
 </html>
