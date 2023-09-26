@@ -3,43 +3,68 @@
 
 <head>
     <title>Prime Checker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body>
-    <h1>Prime Detective</h1>
-    <h5> Think of a number and it may be a prime number. Don't believe it? Give it a try! <br>
-    You may have heard that prime numbers are not so common. <br> This project breaks that myth.</h5>
-
-
-    <p>Enter a number with 10 digits or less that does not end in </p>
-    <p> **** 0, 2, 4, 6, 8 ==> since all such numbers are divisible by 2 and hence cannot be a prime number.</p>
-    <p> **** 5 ==> since all such numbers are divisible by 5 and hence cannot be a prime number. </p>
-    <p> Also, numbers whose digits add up to a multiple of 3 are all divisible by 3 and hence cannot be a prime number. Hence avoid them as well. </p>
+    <h1>You are never far from a prime number!</h1>
+    <h5> Think of a number and it may be a prime number or not too far from it. Don't believe it? Give it a try! </h5>
+   <p>Enter a number with 10 digits or less that does not end in <br>
+   **** 0, 2, 4, 6, 8 ==> since all such numbers are divisible by 2, they cannot be a prime number.<br>
+   **** 5 ==> since all such numbers are divisible by 5, they cannot be a prime number.<br>
+   Also, numbers whose digits add up to a multiple of 3 are all divisible by 3 and therefore cannot be a prime number. Please avoid them as well. <br>
+  Did you know that if you alternately subtract and add each digits in a number and end up with 0, it is divisible by 11. So try not to enter them as well.
+  </p>
     
     <form method="POST" action="/">
-        <input type="number" name="number" min="1" max="9999999999" required>
+        <input type="number" name="number" min="1" max="9999999999" style="width:50%" required autofocus>
         <input type="submit" value="Check">
     </form>
-    {% if result == "even" %}
-      <p>{{ number }} ends with 0, 2, 4, 6 or 8. Please enter a number that does not end in 0, 2, 4, 6 or 8 since they are all divisible by 2 just by observation.  </p>
+    {% if number == "" %}
+    <p></p>
+    {% elif number == 2 %}
+       <p><mark>{{ number }}</mark> is a prime number. You hit a bulls eye!!</p>
+    {% elif number == 3 %}
+       <p><mark>{{ number }}</mark> is a prime number. You hit a bulls eye!!</p>
+    {% elif number == 5 %}
+       <p><mark>{{ number }}</mark> is a prime number. You hit a bulls eye!!</p>   
+    {% elif number == 11 %}
+       <p><mark>{{ number }}</mark> is a prime number. You hit a bulls eye!!</p>
+    {% elif result == "even" %}
+      <p><mark>{{ number }}</mark> ends with 0, 2, 4, 6 or 8. Please enter a number that does not end in 0, 2, 4, 6 or 8 since they are all divisible by 2 just by observation.  </p>
     {% elif result == "divisible_by_5" %}     
-      <p>{{ number }} ends with 5. Please enter a number that does not end in 5 since they are all divisible by 5 just by observation.</p>
+      <p><mark>{{ number }}</mark> ends with 5. Please enter a number that does not end in 5 since they are all divisible by 5 just by observation.</p>
     {% elif result == "divisible_by_3" %}     
-      <p>Sum of digits in this {{ number }} is {{ dsum }} a multiple of 3 hence the number entered is also divisble by 3 and cannot be prime.</p>
+      <p>Sum of digits in <mark>{{ number }}</mark> is {{ ddsum }}  <br>
+      {{ strSum }} = {{ ddsum }} ==> a multiple of 3 hence {{ number }} is also divisble by 3 and cannot be prime.</p>
+    {% elif result == "divisible_by_11" %}     
+      <p>Sum of {{ strSumDif }} is {{ ddsumdif }}  <br>
+     hence <mark>{{ number }}</mark> is  divisble by 11 and cannot be prime.</p>
     {% elif result == "prime" %}
-      <p>{{ number }} is a prime number. You hit a bulls eye!!</p>
+      <p><mark>{{ number }}</mark> is a prime number. You hit a bulls eye!!</p>
     {% elif result == "not prime" %}
-      <p>Closest prime to {{ number }} is <b>{{ closest }}</b>. You missed it only by {{ delta }}.</p>
+      <p>Closest prime to <mark>{{ number }}</mark> is <b>{{ closest }}</b>. You missed it only by {{ delta }}.</p>
     {% else %}
        <p>The number is incorrect. Enter an integer with 10 digits or less.</p>
     {% endif %}
 
 <hr>
 
-<p>Huge thanks to <a href="https://www.linkedin.com/in/guybowerman">Guy</a>, <a href="https://www.linkedin.com/in/manishkg1">Manish</a>,
-    <a href="https://www.linkedin.com/in/veluhariharan">Hariharan</a>,
-    <a href="https://www.linkedin.com/in/sachid-deshmukh-896a53149">Sachid</a>, 
-    <a href="https://www.linkedin.com/in/raghavmaddali5">Raghav</a></p>
+<p>Huge thanks to <a href="https://www.linkedin.com/in/guybowerman">Guy</a>, 
+  <a href="https://www.linkedin.com/in/manishkg1">Manish Gupta</a>,
+  <a href="https://www.linkedin.com/in/manishkumarpandey/">Manish Pandey</a>,
+  <a href="https://www.linkedin.com/in/veluhariharan">Hariharan</a>,
+  <a href="https://www.linkedin.com/in/sachid-deshmukh-896a53149">Sachid</a>, 
+  <a href="https://www.linkedin.com/in/raghavmaddali5">Raghav</a>.
+   Code is <a href="https://github.com/kavishavi/PrimeContainerApp">here</a><br>
+   My other works: <a href="https://bit.ly/HinglishWordle">Hinglish Wordle</a> | 
+   <a href="https://tinyurl.com/RahulUpadhyayaSongs">Songs</a> |
+   <a href="https://Tinyurl.com/RahulPoems">Poems</a> |
+   <a href="https://Tinyurl.com/RahuluhaR">Cartoons</a> |
+   <a href="http://rahul-upadhyaya.blogspot.com/">Articles</a> |   
+   <a href="Https://tinyurl.com/RahulPaheliya">Riddles</a> |     
+   <a href="https://www.garbhanal.com/rahul-upadhaya ">More articles</a> 
+   </p>
     </body>
 
 </html>
