@@ -17,6 +17,18 @@ def isPrime(n):
                 return False
         return True
 
+def getTheDivisor(n):
+    # assume n is a positive integer
+    if n == 1:
+        return False
+    elif n == 2:
+        return True
+    else:
+        for i in range(2, int(n**0.5) + 1):
+            if n % i == 0:
+                return i
+
+
 # find the nearest prime number to n (not including n)
 def nearestPrime(n):
     delta = 1
@@ -77,6 +89,8 @@ def home():
     strSum = None
     ddsumdif = None
     strSumDif = None
+    theDivisor = None
+    secondDivisor = None
 
     # check if the request method is POST
     if request.method == "POST":
@@ -110,13 +124,16 @@ def home():
                 # find the nearest prime number
                 closest = nearestPrime(number)
                 delta = abs(number - closest)
+                theDivisor = getTheDivisor(number)
+                secondDivisor = int(number / theDivisor)
 
         except ValueError:
             # handle invalid input and set the result accordingly
             result = "invalid"
 
     # render the index.html template with the result and number variables
-    return render_template("index.html", result=result, number=number, closest=closest, delta=delta, ddsum=ddsum, strSum=strSum, ddsumdif=ddsumdif, strSumDif=strSumDif)
+    return render_template("index.html", result=result, number=number, closest=closest, delta=delta, ddsum=ddsum, strSum=strSum, 
+    ddsumdif=ddsumdif, strSumDif=strSumDif, theDivisor=theDivisor, secondDivisor=secondDivisor)
 
 # run the app
 # app.run()
