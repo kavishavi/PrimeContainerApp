@@ -8,8 +8,8 @@
 
 <body>
     <h1>You are never far from a prime number!</h1>
-    <h5> Think of a number and it may be a prime number or not too far from it. Don't believe it? Give it a try! </h5>
-   <p>Enter a number with 10 digits or less</p>
+    <h5> Think of a random number and it may be a prime number or not too far from it. Don't believe it? Give it a try! </h5>
+   <p>Enter a number with 10 digits or less (try to avoid obvious non-prime numbers)</p>
     
     <form method="POST" action="/">
         <input type="number" name="number" min="1" max="9999999999" style="width:50%" required autofocus>
@@ -26,19 +26,21 @@
     {% elif number == 11 %}
        <p><mark>{{ number }}</mark> is a prime number. You hit a bulls eye!!</p>
     {% elif result == "even" %}
-      <p><mark>{{ number }}</mark> ends with 0, 2, 4, 6 or 8. Please enter a number that does not end in 0, 2, 4, 6 or 8 since they are all divisible by 2 just by observation.  </p>
+      <p><mark>{{ number }}</mark> ends with 0, 2, 4, 6 or 8. Please try to avoid entering obvious non-prime numbers.</p>
     {% elif result == "divisible_by_5" %}     
-      <p><mark>{{ number }}</mark> ends with 5. Please enter a number that does not end in 5 since they are all divisible by 5 just by observation.</p>
+      <p><mark>{{ number }}</mark> ends with 5. Please try to avoid entering obvious non-prime numbers.</p>
     {% elif result == "divisible_by_3" %}     
       <p>Sum of digits in <mark>{{ number }}</mark> is {{ ddsum }}  <br>
-      {{ strSum }} = {{ ddsum }} ==> a multiple of 3 hence {{ number }} is also divisble by 3 and cannot be prime.</p>
+      {{ strSum }} = {{ ddsum }} ==> a multiple of 3 hence {{ number }} is also divisble by 3 and cannot be prime.<br>
+      Read more <a href="https://www.wccusd.net/cms/lib/CA01001466/Centricity/domain/60/lessons/algebra%20i%20lessons/DivisibilityRulesProofsV2.pdf">here</a> </p>
     {% elif result == "divisible_by_11" %}     
       <p>Sum of {{ strSumDif }} is {{ ddsumdif }}  <br>
      hence <mark>{{ number }}</mark> is  divisble by 11 and cannot be prime.</p>
     {% elif result == "prime" %}
       <p><mark>{{ number }}</mark> is a prime number. You hit a bulls eye!!</p>
     {% elif result == "not prime" %}
-      <p>Closest prime to <mark>{{ number }}</mark> is <b>{{ closest }}</b>. You missed it only by {{ delta }}.</p>
+      <p> <mark>{{ number }}</mark> = {{ theDivisor }} * {{ secondDivisor }} <br>
+        Closest prime is <b>{{ closest }}</b>. You missed it only by {{ delta }}.</p>
     {% else %}
         {% if not number %}
          <p> </p>
@@ -48,11 +50,11 @@
     {% endif %}
 
     <details>
-      <summary>Did you know that ...</summary>
-    <p>Numbers ending with 0, 2, 4, 6, 8 are divisible by 2<br>
-       Numbers ending with 5 are divisible by 5<br>
-       Numbers whose digits add up to a multiple of 3 are divisible by 3<br>
-       If you alternately subtract and add each digits in a number and end up with 0, it is divisible by 11.
+      <summary>Show obvious non-prime numbers</summary>
+    <p>Numbers ending with 0, 2, 4, 6, 8 (as they are divisible by 2)<br>
+       Numbers ending with 5 (as they are divisible by 5)<br>
+       Numbers whose digits add up to a multiple of 3 (as they are are divisible by 3) Eg. 423<br>
+       Numbers whose difference of sum of alternate digits cancel out each other (as they are divisible by 11) Eg. 121 => 1-2+1=0
      </p>
     </details>
     <hr>
